@@ -1,5 +1,7 @@
-
-export const computeFibonacciNumber = (position: number | null): number => {
+export const computeFibonacciNumber = (position: number, recursion: boolean = false): number => {
+    if (recursion) {
+        return recursiveFibonacci(1, 1, position - 2);
+    }
 
     if (position === 0) {
         return 0;
@@ -30,6 +32,18 @@ export const computeFibonacciNumber = (position: number | null): number => {
     return j;
 };
 
+const recursiveFibonacci = (previous: number, current: number, stepsLeft: number): number => {
+    if (stepsLeft < 0) {
+        return 1;
+    }
+    switch (stepsLeft) {
+        case 0:
+            return current;
+        default:
+            return recursiveFibonacci(current, previous + current, stepsLeft - 1);
+    }
+}
+
 export const computeFibonacciArray = (start: number, endInclusive: number): number[] => {
     const inputArray = [...Array(endInclusive - start + 1).keys()].map(i => i + start);
     return inputArray.map(x => computeFibonacciNumber(x));
@@ -43,4 +57,3 @@ const computeNegativeFibonacci = (position: number): number => {
     const absoluteResult = computeFibonacciNumber(-position);
     return resultIsNegative ? absoluteResult * -1 : absoluteResult;
 }
-
