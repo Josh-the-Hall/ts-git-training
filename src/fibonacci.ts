@@ -39,6 +39,7 @@ const recursiveFibonacci = (initialPosition: number, left: number = 0, right: nu
     } else {
         return recursiveFibonacci(initialPosition, right - left, left, currentPosition + 1);
     }
+}
 
 export const computeFibonacciArray = (start: number, endInclusive: number): number[] => {
     const inputArray = [...Array(endInclusive - start + 1).keys()].map(i => i + start);
